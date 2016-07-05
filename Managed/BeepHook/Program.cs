@@ -5,9 +5,11 @@ namespace BeepHook
 {
     class Program
     {
+        // The matching delegate for MessageBeep
         [UnmanagedFunctionPointer(CallingConvention.StdCall, SetLastError = true)]
         delegate bool MessageBeepDelegate(uint uType);
 
+        // Import the method so we can call it
         [DllImport("user32.dll")]
         static extern bool MessageBeep(uint uType);
 
@@ -60,8 +62,6 @@ namespace BeepHook
 
                 Console.Write("\nPress <enter> to uninstall hook and exit.");
                 Console.ReadLine();
-
-
             } // hook.Dispose() will uninstall the hook for us
         }
 
